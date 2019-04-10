@@ -85,8 +85,23 @@ function getStatePensionDateAsString(dateOfBirth, gender) {
   return string;
 }
 
-// Export our two main functions
+/**
+ * Function determine whether a person of a given 'gender' and 'Date of birth'
+ * would be over State Pension age.
+ *
+ * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD)
+ * @param {string} gender gender as string ('male' or 'female')
+ * @returns {boolean} true if over SPA, false if not
+ */
+function isOverStatePensionAge(dateOfBirth, gender) {
+  const spaDate = getStatePensionDate(dateOfBirth, gender);
+  const now = Date.now();
+  return spaDate.getTime() <= now;
+}
+
+// Export functions
 module.exports = {
   getStatePensionDate,
-  getStatePensionDateAsString
+  getStatePensionDateAsString,
+  isOverStatePensionAge
 };

@@ -1,7 +1,8 @@
 'use strict';
 
 const assert = require('assert');
-const {getStatePensionDate, getStatePensionDateAsString} = require('../src/get-state-pension-date');
+const timekeeper = require('timekeeper');
+const {getStatePensionDate, getStatePensionDateAsString, isOverStatePensionAge} = require('../src/get-state-pension-date');
 
 describe('getStatePensionDate()', () => {
   describe('Input validation', () => {
@@ -1466,6 +1467,54 @@ describe('getStatePensionDateAsString()', () => {
   describe('String format', () => {
     it('should return SPA date as a string in YYYY-MM-DD format', () => {
       assert.deepStrictEqual(getStatePensionDateAsString('1953-12-05', 'male'), '2018-12-05');
+    });
+  });
+});
+
+describe('isOverStatePensionAge()', () => {
+  describe('Input validation', () => {
+    it('should throw a TypeError when date of birth is not a string', () => {
+      assert.throws(() => isOverStatePensionAge(9, 'male'), TypeError);
+    });
+
+    it('should throw a TypeError when gender is not a string', () => {
+      assert.throws(() => isOverStatePensionAge('1950-03-05', false), TypeError);
+    });
+
+    it('should throw an Error when gender is a string but not male or female', () => {
+      assert.throws(() => isOverStatePensionAge('1950-03-05', 'test'), Error);
+    });
+
+    it('should throw an Error when date of birth is a string but not a valid date', () => {
+      assert.throws(() => isOverStatePensionAge('1950-00-00', 'female'), Error);
+    });
+  });
+
+  describe('Return type', () => {
+    it('should return a boolean', () => {
+      assert.strictEqual(typeof isOverStatePensionAge('1953-12-05', 'male'), 'boolean');
+    });
+  });
+
+  describe('Boolean', () => {
+    before(() => {
+      timekeeper.freeze(new Date('2019-09-06'));
+    });
+
+    it('should return true when SPA date is in the past', () => {
+      assert.deepStrictEqual(isOverStatePensionAge('1953-12-05', 'male'), true);
+    });
+
+    it('should return true when SPA date is today', () => {
+      assert.deepStrictEqual(isOverStatePensionAge('1954-03-25', 'female'), true);
+    });
+
+    it('should return false when SPA date is in the future', () => {
+      assert.deepStrictEqual(isOverStatePensionAge('1990-12-05', 'female'), false);
+    });
+
+    after(() => {
+      timekeeper.reset();
     });
   });
 });

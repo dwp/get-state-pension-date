@@ -1,6 +1,6 @@
 # get-state-pension-date #
 
-This package provides two simple functions that allows the calculation of the date on which a UK citizen becomes eligible for their State Pension.
+This package provides functions that allows the calculation of the date on which a UK citizen becomes eligible for their State Pension.
 
 ## Installation
 
@@ -10,23 +10,43 @@ npm install get-state-pension-date
 
 ## Usage
 
-`getStatePensionDate()` takes a date of birth string and gender and returns a state pension age `Date` object.
-`getStatePensionDateAsString()` takes the same parameters but returns a `string`.
+`getStatePensionDate()` takes a date of birth string and a gender and returns a `Date` object representing when State Pension age would be reached.
 
-For example:
+**For example:**
 
 ```javascript
-const {getStatePensionDate, getStatePensionDateAsString} = require('get-state-pension-date');
+const {getStatePensionDate} = require('get-state-pension-date');
 
 // Date: 2058-03-25T00:00:00.000Z
-const SPADate = getStatePensionDate('1990-03-25', 'male');
-
-// String: 2058-03-25
-const SPAString = getStatePensionDateAsString('1990-03-25', 'female');
+const spaDate = getStatePensionDate('1990-03-25', 'male');
 ```
 
-Both functions will throw if the date of birth is not a `YYYY-MM-DD` formatted
-string or if the gender is not a string of `male` or `female`.
+`getStatePensionDateAsString()` takes the same parameters but returns the State Pension age date as a `string`.
+
+**For example:**
+
+```javascript
+const {getStatePensionDateAsString} = require('get-state-pension-date');
+
+// string: 2058-03-25
+const spaString = getStatePensionDateAsString('1990-03-25', 'female');
+```
+
+`isOverStatePensionAge()` takes the same parameters but returns a `boolean` if the State Pension age date is today or in the past.
+
+**For example:**
+
+```javascript
+const {isOverStatePensionAge} = require('get-state-pension-date');
+
+// boolean: true
+const overSpa = isOverStatePensionAge('1953-03-25', 'male');
+
+// boolean: false
+const workingAge = isOverStatePensionAge('1990-03-25', 'female');
+```
+
+All functions will throw if the date of birth is not a `YYYY-MM-DD` formatted string or if the gender is not a string of `male` or `female`.
 
 ## Caveat
 
