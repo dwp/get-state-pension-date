@@ -1,4 +1,5 @@
 'use strict';
+
 // This module exports an array of objects that define the rules for calculating
 // the date on which a person becomes eligible for their State Pension.
 //
@@ -38,7 +39,7 @@ function pensionAgeData() {
     {
       periodStart: '',
       periodEnd: '1950-04-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'age',
         years: 60,
@@ -48,7 +49,7 @@ function pensionAgeData() {
     {
       periodStart: '',
       periodEnd: '1953-12-05',
-      gender: 'M',
+      gender: 'male',
       pensionDate: {
         type: 'age',
         years: 65,
@@ -58,7 +59,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-04-06',
       periodEnd: '1950-05-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2010-05-06'
@@ -67,7 +68,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-05-06',
       periodEnd: '1950-06-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2010-07-06'
@@ -76,7 +77,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-06-06',
       periodEnd: '1950-07-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2010-09-06'
@@ -85,7 +86,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-07-06',
       periodEnd: '1950-08-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2010-11-06'
@@ -94,7 +95,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-08-06',
       periodEnd: '1950-09-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2011-01-06'
@@ -103,7 +104,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-09-06',
       periodEnd: '1950-10-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2011-03-06'
@@ -112,7 +113,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-10-06',
       periodEnd: '1950-11-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2011-05-06'
@@ -121,7 +122,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-11-06',
       periodEnd: '1950-12-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2011-07-06'
@@ -130,7 +131,7 @@ function pensionAgeData() {
     {
       periodStart: '1950-12-06',
       periodEnd: '1951-01-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2011-09-06'
@@ -139,7 +140,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-01-06',
       periodEnd: '1951-02-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2011-11-06'
@@ -148,7 +149,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-02-06',
       periodEnd: '1951-03-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2012-01-06'
@@ -157,7 +158,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-03-06',
       periodEnd: '1951-04-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2012-03-06'
@@ -166,7 +167,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-04-06',
       periodEnd: '1951-05-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2012-05-06'
@@ -175,7 +176,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-05-06',
       periodEnd: '1951-06-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2012-07-06'
@@ -184,7 +185,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-06-06',
       periodEnd: '1951-07-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2012-09-06'
@@ -193,7 +194,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-07-06',
       periodEnd: '1951-08-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2012-11-06'
@@ -202,7 +203,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-08-06',
       periodEnd: '1951-09-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2013-01-06'
@@ -211,7 +212,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-09-06',
       periodEnd: '1951-10-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2013-03-06'
@@ -220,7 +221,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-10-06',
       periodEnd: '1951-11-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2013-05-06'
@@ -229,7 +230,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-11-06',
       periodEnd: '1951-12-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2013-07-06'
@@ -238,7 +239,7 @@ function pensionAgeData() {
     {
       periodStart: '1951-12-06',
       periodEnd: '1952-01-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2013-09-06'
@@ -247,7 +248,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-01-06',
       periodEnd: '1952-02-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2013-11-06'
@@ -256,7 +257,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-02-06',
       periodEnd: '1952-03-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2014-01-06'
@@ -265,7 +266,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-03-06',
       periodEnd: '1952-04-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2014-03-06'
@@ -274,7 +275,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-04-06',
       periodEnd: '1952-05-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2014-05-06'
@@ -283,7 +284,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-05-06',
       periodEnd: '1952-06-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2014-07-06'
@@ -292,7 +293,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-06-06',
       periodEnd: '1952-07-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2014-09-06'
@@ -301,7 +302,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-07-06',
       periodEnd: '1952-08-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2014-11-06'
@@ -310,7 +311,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-08-06',
       periodEnd: '1952-09-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2015-01-06'
@@ -319,7 +320,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-08-06',
       periodEnd: '1952-09-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2015-01-06'
@@ -328,7 +329,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-09-06',
       periodEnd: '1952-10-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2015-03-06'
@@ -337,7 +338,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-10-06',
       periodEnd: '1952-11-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2015-05-06'
@@ -346,7 +347,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-11-06',
       periodEnd: '1952-12-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2015-07-06'
@@ -355,7 +356,7 @@ function pensionAgeData() {
     {
       periodStart: '1952-12-06',
       periodEnd: '1953-01-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2015-09-06'
@@ -364,7 +365,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-01-06',
       periodEnd: '1953-02-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2015-11-06'
@@ -373,7 +374,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-02-06',
       periodEnd: '1953-03-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2016-01-06'
@@ -382,7 +383,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-03-06',
       periodEnd: '1953-04-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2016-03-06'
@@ -391,7 +392,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-04-06',
       periodEnd: '1953-05-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2016-07-06'
@@ -400,7 +401,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-05-06',
       periodEnd: '1953-06-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2016-11-06'
@@ -409,7 +410,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-06-06',
       periodEnd: '1953-07-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2017-03-06'
@@ -418,7 +419,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-07-06',
       periodEnd: '1953-08-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2017-07-06'
@@ -427,7 +428,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-08-06',
       periodEnd: '1953-09-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2017-11-06'
@@ -436,7 +437,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-09-06',
       periodEnd: '1953-10-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2018-03-06'
@@ -445,7 +446,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-10-06',
       periodEnd: '1953-11-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2018-07-06'
@@ -454,7 +455,7 @@ function pensionAgeData() {
     {
       periodStart: '1953-11-06',
       periodEnd: '1953-12-05',
-      gender: 'F',
+      gender: 'female',
       pensionDate: {
         type: 'fixed',
         value: '2018-11-06'

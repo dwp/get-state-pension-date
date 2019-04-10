@@ -1,135 +1,89 @@
 'use strict';
-const isValidYYYYMMDDDate = require('./utilities/is-valid-yyyymmdd-date');
-const pad = require('./utilities/pad');
-const sanitizeDate = require('./utilities/sanitize-date');
+
+const isValidDateString = require('./utils/is-valid-date-string');
+const formatDate = require('./utils/format-date');
 const {pensionAgeData} = require('./spa-data');
 
-//
-// Function to calculate UK State Pension age/date for a given 'Gender' and
-// 'Date of birth'.
-//
-// Returns: 'undefined' if unable to calculate the date, otherwise it returns the
-//          state pension date as a Date object
-//
+/**
+ * Function to calculate UK State Pension date for a given 'gender' and
+ * 'Date of birth'.
+ *
+ * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD)
+ * @param {string} gender gender as string ('male' or 'female')
+ * @returns {Date} state pension date as a Date object
+ */
 function getStatePensionDate(dateOfBirth, gender) {
-  // Let result; // Default to 'undefined'
-
-  dateOfBirth = sanitizeDate(dateOfBirth);
-
-  // Don't bother going any further if the input params are not valid
-  if (validateInputs(dateOfBirth, gender) === false) {
-    throw new TypeError('Invalid Input');
+  if (typeof dateOfBirth !== 'string') {
+    throw new TypeError(`Expected string got ${typeof dateOfBirth}: ${dateOfBirth}`);
   }
 
-  // Ensure we end up with the single char version of our gender variable
-  // I.e. convert 'MALE' to 'M' or 'FEMALE' to 'F'
-  gender = gender.substr(0, 1).toUpperCase();
+  if (typeof gender !== 'string') {
+    throw new TypeError(`Expected string got ${typeof gender}: ${gender}`);
+  }
 
-  const dateOfBirthDate = new Date(dateOfBirth);
-  let statePensionDate; // Defaults to 'undefined'
+  if (gender !== 'female' && gender !== 'male') {
+    throw new Error(`gender string must be 'female' or 'male', got: ${gender}`);
+  }
+
+  if (!isValidDateString(dateOfBirth)) {
+    throw new Error(`Date of birth string must be real date in YYYY-MM-DD format, got: ${dateOfBirth}`);
+  }
+
+  // Get state pension age data
   const statePensionAgeData = pensionAgeData();
-  // See if we can find a rule in our dataset that matches our DOB & gender
-  const ageData = statePensionAgeData.find(currentElement => {
-    let matched = false;
 
-    // If rule gender is '' (applies to any gender), or matches the supplied
-    // gender...
-    if (currentElement.gender === '' || (currentElement.gender.toUpperCase() === gender.toUpperCase())) {
-      // ...then check the date of birth is within the range of this rule
-      const periodStartDate = new Date(currentElement.periodStart);
-      const periodEndDate = new Date(currentElement.periodEnd);
-
-      if ((currentElement.periodStart === '' || (dateOfBirthDate.getTime() >= periodStartDate.getTime())) &&
-        (currentElement.periodEnd === '' || (dateOfBirthDate.getTime() <= periodEndDate.getTime()))) {
-        // Everything checks out, so we found a match
-        matched = true;
+  // Get state pension age data that matches the gender and date of birth
+  const ageData = statePensionAgeData.find(spaData => {
+    if (spaData.gender === gender || spaData.gender === '') {
+      if ((spaData.periodStart === '' || dateOfBirth >= spaData.periodStart) &&
+          (spaData.periodEnd === '' || dateOfBirth <= spaData.periodEnd)) {
+        return true;
       }
     }
 
-    return matched;
+    return false;
   });
 
-  // If we found a match for our date of birth/gender, then use that matching
-  // rule to work out the retirement date
-  if (ageData !== undefined) {
-    switch (ageData.pensionDate.type) {
-      case 'fixed': {
-        statePensionDate = new Date(ageData.pensionDate.value);
-        break;
-      }
-
-      case 'age': {
-        statePensionDate = new Date(dateOfBirthDate);
-        statePensionDate.setFullYear(dateOfBirthDate.getFullYear() + ageData.pensionDate.years);
-        statePensionDate.setMonth(dateOfBirthDate.getMonth() + ageData.pensionDate.months);
-
-        // If the DOB is a 'leap day' (29 feb), then if the date of
-        // retirement falls in a non-leap year (no 29 feb), we have to
-        // move the retirement date 'forwards' to 01 March.
-        // However, the 'Pensions act 2014' requires people born on the
-        // 31st of a month, who find themselves with a retirement month
-        // that does not have a 31st, to be moved 'backwards' to the 30th.
-        if (dateOfBirthDate.getDate() !== statePensionDate.getDate()) {
-        // So if DOB was a 29 feb, we move them forwards
-          if (dateOfBirthDate.getDate() === 29 && dateOfBirthDate.getMonth() === 1) {
-            statePensionDate.setMonth(statePensionDate.getMonth() + 1);
-          } else {
-          // Else, we move them backwards
-            statePensionDate.setDate(statePensionDate.getDate() - 1);
-          }
-        }
-
-        break;
-      }
-
-      default: {
-        throw new TypeError('No match found for input');
-      }
-    }
+  // If fixed state pension date, return fixed value
+  if (ageData.pensionDate.type === 'fixed') {
+    return new Date(ageData.pensionDate.value);
   }
 
-  // Return the result
-  // return result;
-  return statePensionDate;
+  // Otherwise pensionDate.type must be 'age'
+  // Parse dateOfBirth as date
+  const dateElements = dateOfBirth.split('-');
+  const dobYear = parseInt(dateElements[0], 10);
+  const dobMonth = parseInt(dateElements[1], 10) - 1;
+  const dobDay = parseInt(dateElements[2], 10);
+
+  // State pension date is date of birth plus years and months from data
+  const spaYear = dobYear + ageData.pensionDate.years;
+  const spaMonth = dobMonth + ageData.pensionDate.months;
+
+  // Create SPA Date
+  const spaDate = new Date(Date.UTC(spaYear, spaMonth, dobDay));
+
+  // If date day is the same, or a leap day, return date
+  if (dobDay !== spaDate.getDate() && dobDay !== 29 && dobMonth !== 1) {
+    return new Date(Date.UTC(spaYear, spaMonth, dobDay - spaDate.getDate()));
+  }
+
+  return spaDate;
 }
 
-//
-// Function to return the date as a string in the YY-MM-DD format
-//
+/**
+ * Function to calculate UK State Pension date for a given 'gender' and
+ * 'Date of birth' as a YYYY-MM-DD formatted string.
+ *
+ * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD)
+ * @param {string} gender gender as string ('male' or 'female')
+ * @returns {Date} state pension date as a Date object
+ */
 function getStatePensionDateAsString(dateOfBirth, gender) {
-  let result;
-  const statePensionDate = getStatePensionDate(dateOfBirth, gender);
-
-  if (statePensionDate !== undefined) {
-    result = `${statePensionDate.getFullYear()}-${pad(statePensionDate.getMonth() + 1, '0', 2)}-${pad(statePensionDate.getDate(), '0', 2)}`;
-  }
-
-  return result;
+  const spaDate = getStatePensionDate(dateOfBirth, gender);
+  const string = formatDate(spaDate);
+  return string;
 }
-
-//
-// Function to verify we have valid input data
-//
-function validateInputs(dateOfBirth, gender) {
-  let result = true;
-
-  result = isValidYYYYMMDDDate(dateOfBirth);
-
-  // We only support gender of 'M', 'MALE', 'F' & 'FEMALE'
-  if (result === true && typeof gender === 'string') {
-    if ((gender.toUpperCase() !== 'M') &&
-      (gender.toUpperCase() !== 'MALE') &&
-      (gender.toUpperCase() !== 'F') &&
-      (gender.toUpperCase() !== 'FEMALE')) {
-      result = false;
-    }
-  } else {
-    result = false;
-  }
-
-  return result;
-}
-// End function validateInputs()
 
 // Export our two main functions
 module.exports = {

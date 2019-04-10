@@ -1,5 +1,5 @@
 {
-  "name": "get-uk-state-pension-date",
+  "name": "get-state-pension-date",
   "version": "0.1.5",
   "description": "For a given date of birth, and gender, return the date on which the UK State Pension will be available.",
   "main": "src/get-state-pension-date.js",
@@ -7,21 +7,17 @@
     "node": "8.9.1"
   },
   "scripts": {
-    "start": "node server.js",
-    "test": "nyc mocha test && xo",
-    "security": "nsp check"
+    "test": "npm run test:unit",
+    "test:unit": "mocha 'test/**/*.js'",
+    "test:lint": "xo",
+    "test:coverage": "nyc mocha 'test/**/*.js'"
   },
   "author": "DWP Digital",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.14.0"
-  },
   "devDependencies": {
-    "mocha": "^5.2.0",
-    "nsp": "^3.2.1",
-    "nyc": "^12.0.2",
-    "proxyquire": "^2.0.1",
-    "xo": "^0.21.1"
+    "mocha": "^6.1.2",
+    "nyc": "^13.3.0",
+    "xo": "^0.24.0"
   },
   "xo": {
     "space": true,
