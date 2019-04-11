@@ -14,11 +14,11 @@ const {pensionAgeData} = require('./spa-data');
  */
 function getStatePensionDate(dateOfBirth, gender) {
   if (typeof dateOfBirth !== 'string') {
-    throw new TypeError(`Expected string got ${typeof dateOfBirth}: ${dateOfBirth}`);
+    throw new TypeError(`Expected dateOfBirth to be string got ${typeof dateOfBirth}: ${dateOfBirth}`);
   }
 
   if (typeof gender !== 'string') {
-    throw new TypeError(`Expected string got ${typeof gender}: ${gender}`);
+    throw new TypeError(`Expected gender to be string got ${typeof gender}: ${gender}`);
   }
 
   if (gender !== 'female' && gender !== 'male') {
@@ -26,7 +26,7 @@ function getStatePensionDate(dateOfBirth, gender) {
   }
 
   if (!isValidDateString(dateOfBirth)) {
-    throw new Error(`Date of birth string must be real date in YYYY-MM-DD format, got: ${dateOfBirth}`);
+    throw new Error(`dateOfBirth string must be real date in YYYY-MM-DD format, got: ${dateOfBirth}`);
   }
 
   // Get state pension age data
