@@ -1,11 +1,14 @@
 {
   "name": "get-state-pension-date",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "For a given date of birth, and gender, return the date on which the UK State Pension will be available.",
   "main": "src/get-state-pension-date.js",
   "engines": {
     "node": "8.9.1"
   },
+  "files": [
+    "src/**/*"
+  ],
   "scripts": {
     "test": "npm run test:unit",
     "test:unit": "mocha 'test/**/*.js'",
