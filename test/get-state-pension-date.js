@@ -21,6 +21,12 @@ describe('getStatePensionDate()', () => {
     it('should throw an Error when date of birth is a string but not a valid date', () => {
       assert.throws(() => getStatePensionDate('1950-00-00', 'female'), Error);
     });
+
+    it('should return the same value for dates with and without leading zeros', () => {
+      const zeroSPA = getStatePensionDate('1954-03-05', 'male');
+      const noZeroSPA = getStatePensionDate('1954-3-5', 'male');
+      assert.deepStrictEqual(zeroSPA, noZeroSPA);
+    });
   });
 
   describe('Return type', () => {

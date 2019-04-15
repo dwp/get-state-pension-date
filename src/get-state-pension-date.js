@@ -32,11 +32,17 @@ function getStatePensionDate(dateOfBirth, gender) {
   // Get state pension age data
   const statePensionAgeData = pensionAgeData();
 
+  // Sanitise date of birth string (zero pad months and days)
+  const dateElements = dateOfBirth.split('-');
+  const sanitisedDob = dateElements[0] + '-' +
+    dateElements[1].padStart(2, '0') + '-' +
+    dateElements[2].padStart(2, '0');
+
   // Get state pension age data that matches the gender and date of birth
   const ageData = statePensionAgeData.find(spaData => {
     if (spaData.gender === gender || spaData.gender === '') {
-      if ((spaData.periodStart === '' || dateOfBirth >= spaData.periodStart) &&
-          (spaData.periodEnd === '' || dateOfBirth <= spaData.periodEnd)) {
+      if ((spaData.periodStart === '' || sanitisedDob >= spaData.periodStart) &&
+          (spaData.periodEnd === '' || sanitisedDob <= spaData.periodEnd)) {
         return true;
       }
     }
@@ -50,8 +56,7 @@ function getStatePensionDate(dateOfBirth, gender) {
   }
 
   // Otherwise pensionDate.type must be 'age'
-  // Parse dateOfBirth as date
-  const dateElements = dateOfBirth.split('-');
+  // Parse dateOfBirth elements as ints
   const dobYear = parseInt(dateElements[0], 10);
   const dobMonth = parseInt(dateElements[1], 10) - 1;
   const dobDay = parseInt(dateElements[2], 10);
