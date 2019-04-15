@@ -22,7 +22,7 @@
   "author": "DWP Digital",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^6.1.2",
+    "mocha": "^6.1.3",
     "nyc": "^13.3.0",
     "timekeeper": "^2.2.0",
     "xo": "^0.24.0"
