@@ -1,5 +1,22 @@
 # Change Log
 
+<a name="1.0.2"></a>
+## [1.0.1](https://github.com/gunjam/get-state-pension-date/compare/1.0.1...1.0.2) (2019-06-06)
+
+### Refactor
+
+* const some strings, restructure SPA data to be more efficient
+
+### Chore
+
+* bump version of mocha to 6.1.4
+* bump version of nyc to 14.1.1
+
+### Docs
+
+* change function names to headings in README.md
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/gunjam/get-state-pension-date/compare/1.0.0...1.0.1) (2019-04-15)
 

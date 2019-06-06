@@ -15,7 +15,8 @@ npm install get-state-pension-date
 
 ## Usage
 
-`getStatePensionDate()` takes a date of birth string and a gender and returns a `Date` object representing when State Pension age would be reached.
+### `getStatePensionDate()`
+Takes a date of birth string and a gender and returns a `Date` object representing when State Pension age would be reached.
 
 **For example:**
 
@@ -26,7 +27,8 @@ const {getStatePensionDate} = require('get-state-pension-date');
 const spaDate = getStatePensionDate('1990-03-25', 'male');
 ```
 
-`getStatePensionDateAsString()` takes the same parameters but returns the State Pension age date as a `string`.
+### `getStatePensionDateAsString()`
+Takes the same parameters as `getStatePensionDate()` but returns the State Pension age date as a `string`.
 
 **For example:**
 
@@ -37,7 +39,8 @@ const {getStatePensionDateAsString} = require('get-state-pension-date');
 const spaString = getStatePensionDateAsString('1990-03-25', 'female');
 ```
 
-`isOverStatePensionAge()` takes the same parameters but returns a `boolean` if the State Pension age date is today or in the past.
+### `isOverStatePensionAge()`
+Takes the same parameters as `getStatePensionDate()` but returns a `boolean` if the State Pension age date is today or in the past.
 
 **For example:**
 

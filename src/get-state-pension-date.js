@@ -2,7 +2,8 @@
 
 const isValidDateString = require('./utils/is-valid-date-string');
 const formatDate = require('./utils/format-date');
-const {pensionAgeData} = require('./spa-data');
+const statePensionAgeData = require('./spa-data');
+const {FIXED, MALE, FEMALE, EQUALISED, EQUALISATION_DATE} = require('./consts');
 
 /**
  * Function to calculate UK State Pension date for a given 'gender' and
@@ -12,7 +13,7 @@ const {pensionAgeData} = require('./spa-data');
  * @param {string} gender gender as string ('male' or 'female')
  * @returns {Date} state pension date as a Date object
  */
-function getStatePensionDate(dateOfBirth, gender) {
+const getStatePensionDate = (dateOfBirth, gender) => {
   if (typeof dateOfBirth !== 'string') {
     throw new TypeError(`Expected dateOfBirth to be string got ${typeof dateOfBirth}: ${dateOfBirth}`);
   }
@@ -21,16 +22,13 @@ function getStatePensionDate(dateOfBirth, gender) {
     throw new TypeError(`Expected gender to be string got ${typeof gender}: ${gender}`);
   }
 
-  if (gender !== 'female' && gender !== 'male') {
-    throw new Error(`gender string must be 'female' or 'male', got: ${gender}`);
+  if (gender !== FEMALE && gender !== MALE) {
+    throw new Error(`gender string must be '${FEMALE}' or '${MALE}', got: ${gender}`);
   }
 
   if (!isValidDateString(dateOfBirth)) {
     throw new Error(`dateOfBirth string must be real date in YYYY-MM-DD format, got: ${dateOfBirth}`);
   }
-
-  // Get state pension age data
-  const statePensionAgeData = pensionAgeData();
 
   // Sanitise date of birth string (zero pad months and days)
   const dateElements = dateOfBirth.split('-');
@@ -38,20 +36,22 @@ function getStatePensionDate(dateOfBirth, gender) {
     dateElements[1].padStart(2, '0') + '-' +
     dateElements[2].padStart(2, '0');
 
-  // Get state pension age data that matches the gender and date of birth
-  const ageData = statePensionAgeData.find(spaData => {
-    if (spaData.gender === gender || spaData.gender === '') {
-      if ((spaData.periodStart === '' || sanitisedDob >= spaData.periodStart) &&
-          (spaData.periodEnd === '' || sanitisedDob <= spaData.periodEnd)) {
-        return true;
-      }
+  // If date of birth is on or afer the equalised date use equalisation SPA data
+  // otherwise use the gender specific data
+  const spaDataSet = sanitisedDob >= EQUALISATION_DATE ? EQUALISED : gender;
+
+  // Get state pension age data that matches the date of birth
+  const ageData = statePensionAgeData[spaDataSet].find(spaData => {
+    if ((!spaData.periodStart || sanitisedDob >= spaData.periodStart) &&
+        (!spaData.periodEnd || sanitisedDob <= spaData.periodEnd)) {
+      return true;
     }
 
     return false;
   });
 
   // If fixed state pension date, return fixed value
-  if (ageData.pensionDate.type === 'fixed') {
+  if (ageData.pensionDate.type === FIXED) {
     return new Date(ageData.pensionDate.value);
   }
 
@@ -74,7 +74,7 @@ function getStatePensionDate(dateOfBirth, gender) {
   }
 
   return spaDate;
-}
+};
 
 /**
  * Function to calculate UK State Pension date for a given 'gender' and
@@ -84,11 +84,11 @@ function getStatePensionDate(dateOfBirth, gender) {
  * @param {string} gender gender as string ('male' or 'female')
  * @returns {Date} state pension date as a Date object
  */
-function getStatePensionDateAsString(dateOfBirth, gender) {
+const getStatePensionDateAsString = (dateOfBirth, gender) => {
   const spaDate = getStatePensionDate(dateOfBirth, gender);
   const string = formatDate(spaDate);
   return string;
-}
+};
 
 /**
  * Function determine whether a person of a given 'gender' and 'Date of birth'
@@ -98,11 +98,11 @@ function getStatePensionDateAsString(dateOfBirth, gender) {
  * @param {string} gender gender as string ('male' or 'female')
  * @returns {boolean} true if over SPA, false if not
  */
-function isOverStatePensionAge(dateOfBirth, gender) {
+const isOverStatePensionAge = (dateOfBirth, gender) => {
   const spaDate = getStatePensionDate(dateOfBirth, gender);
   const now = Date.now();
   return spaDate.getTime() <= now;
-}
+};
 
 // Export functions
 module.exports = {
