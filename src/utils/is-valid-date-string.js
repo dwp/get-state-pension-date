@@ -1,7 +1,7 @@
 'use strict';
 
 // Regular expression to match date format YYYY-MM-DD
-const dateRegex = /^\d{4}-\d{1,2}-\d{1,2}$/;
+const dateRegex = /^\d{4}(?:-\d{1,2}){2}$/;
 
 // Array of max days in a month from Jan [0] - Dec [11]
 const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -20,9 +20,9 @@ const isValidDate = input => {
 
   // Split the date into relevant parts and cast into numbers
   const dateElements = input.split('-');
-  const year = parseInt(dateElements[0], 10);
-  const month = parseInt(dateElements[1], 10);
-  const day = parseInt(dateElements[2], 10);
+  const year = Number.parseInt(dateElements[0], 10);
+  const month = Number.parseInt(dateElements[1], 10);
+  const day = Number.parseInt(dateElements[2], 10);
 
   // Return false if month is not valid
   if (month === 0 || month > 12) {

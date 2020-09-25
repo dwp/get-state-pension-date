@@ -57,9 +57,9 @@ const getStatePensionDate = (dateOfBirth, gender) => {
 
   // Otherwise pensionDate.type must be 'age'
   // Parse dateOfBirth elements as ints
-  const dobYear = parseInt(dateElements[0], 10);
-  const dobMonth = parseInt(dateElements[1], 10) - 1;
-  const dobDay = parseInt(dateElements[2], 10);
+  const dobYear = Number.parseInt(dateElements[0], 10);
+  const dobMonth = Number.parseInt(dateElements[1], 10) - 1;
+  const dobDay = Number.parseInt(dateElements[2], 10);
 
   // State pension date is date of birth plus years and months from data
   const spaYear = dobYear + ageData.pensionDate.years;
