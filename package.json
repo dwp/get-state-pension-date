@@ -4,7 +4,7 @@
   "description": "For a given date of birth, and gender, return the date on which the UK State Pension will be available.",
   "main": "src/get-state-pension-date.js",
   "engines": {
-    "node": "8.9.1"
+    "node": ">8.9.1"
   },
   "files": [
     "src/**/*"
