@@ -52,7 +52,11 @@ const getStatePensionDate = (dateOfBirth, gender) => {
 
   // If fixed state pension date, return fixed value
   if (ageData.pensionDate.type === FIXED) {
-    return new Date(ageData.pensionDate.value);
+    const spaDateElements = ageData.pensionDate.value.split('-');
+    const spaYear = Number.parseInt(spaDateElements[0], 10);
+    const spaMonth = Number.parseInt(spaDateElements[1], 10) - 1;
+    const spaDay = Number.parseInt(spaDateElements[2], 10);
+    return new Date(spaYear, spaMonth, spaDay);
   }
 
   // Otherwise pensionDate.type must be 'age'
@@ -66,11 +70,11 @@ const getStatePensionDate = (dateOfBirth, gender) => {
   const spaMonth = dobMonth + ageData.pensionDate.months;
 
   // Create SPA Date
-  const spaDate = new Date(Date.UTC(spaYear, spaMonth, dobDay));
+  const spaDate = new Date(spaYear, spaMonth, dobDay);
 
   // If date day is the same, or a leap day, return date
   if (dobDay !== spaDate.getDate() && dobDay !== 29 && dobMonth !== 1) {
-    return new Date(Date.UTC(spaYear, spaMonth, dobDay - spaDate.getDate()));
+    return new Date(spaYear, spaMonth, dobDay - spaDate.getDate());
   }
 
   return spaDate;
