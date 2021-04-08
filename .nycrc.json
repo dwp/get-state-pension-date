@@ -1,4 +1,5 @@
 {
+  "report-dir": ".coverage",
   "check-coverage": true,
   "lines": 80,
   "statements": 80,

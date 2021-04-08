@@ -1,18 +1,5 @@
-# Visual Studio Code config file
-.vscode
-
-# Node dependencies
 node_modules
 
-# Log files
-*.log
-
-# Istanbul/nyc code coverage results
-coverage
+# code coverage results
+.coverage
 .nyc_output
-
-# linter config files
-.eslintrc.json
-
-# Jenkins
-JenkinsFile*
