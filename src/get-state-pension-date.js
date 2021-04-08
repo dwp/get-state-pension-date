@@ -95,15 +95,17 @@ const getStatePensionDateAsString = (dateOfBirth, gender) => {
 };
 
 /**
- * Function determine whether a person of a given 'gender' and 'Date of birth'
- * would be over State Pension age.
+ * Function to determine whether a person is currently over State Pension age
+ * based on their date of birth.
  *
  * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD)
- * @param {string} gender gender as string ('male' or 'female')
  * @returns {boolean} true if over SPA, false if not
  */
-const isOverStatePensionAge = (dateOfBirth, gender) => {
-  const spaDate = getStatePensionDate(dateOfBirth, gender);
+const isOverStatePensionAge = dateOfBirth => {
+  // Since December 2018 the State Pension age has been equalised for men and
+  // women so we no longer need a gender flag to passed by the user, hardcoding
+  // for this call.
+  const spaDate = getStatePensionDate(dateOfBirth, 'male');
   const now = Date.now();
   return spaDate.getTime() <= now;
 };

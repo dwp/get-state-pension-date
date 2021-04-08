@@ -40,7 +40,7 @@ const spaString = getStatePensionDateAsString('1990-03-25', 'female');
 ```
 
 ### `isOverStatePensionAge()`
-Takes the same parameters as `getStatePensionDate()` but returns a `boolean` if the State Pension age date is today or in the past.
+Takes a date of birth and returns a `boolean`, returning `true` if the State Pension age date is today or in the past, `false` if it’s in the future.
 
 **For example:**
 
@@ -48,10 +48,10 @@ Takes the same parameters as `getStatePensionDate()` but returns a `boolean` if 
 const {isOverStatePensionAge} = require('get-state-pension-date');
 
 // boolean: true
-const overSpa = isOverStatePensionAge('1953-03-25', 'male');
+const overSpa = isOverStatePensionAge('1953-03-25');
 
 // boolean: false
-const workingAge = isOverStatePensionAge('1990-03-25', 'female');
+const workingAge = isOverStatePensionAge('1990-03-25');
 ```
 
 All functions will throw if the date of birth is not a `YYYY-MM-DD` formatted string or if the gender is not a string of `male` or `female`.
