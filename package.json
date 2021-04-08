@@ -14,24 +14,20 @@
     "url": "https://github.com/gunjam/get-state-pension-date"
   },
   "scripts": {
-    "test": "npm run test:unit",
-    "test:unit": "mocha 'test/**/*.js'",
-    "test:lint": "xo",
-    "test:coverage": "nyc mocha 'test/**/*.js'"
+    "test": "tap test",
+    "lint": "xo"
   },
   "author": "DWP Digital",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^8.3.2",
-    "nyc": "^15.1.0",
+    "tap": "^15.0.2",
     "timekeeper": "^2.2.0",
     "xo": "^0.38.2"
   },
   "xo": {
     "space": true,
     "env": [
-      "node",
-      "mocha"
+      "node"
     ]
   }
 }

@@ -1,19 +1,8 @@
 'use strict';
 
-const assert = require('assert');
-
+const t = require('tap');
 const formatDate = require('../../src/utils/format-date');
 
-describe('formatDate()', () => {
-  it('should return a string', () => {
-    assert.strictEqual(typeof formatDate(new Date()), 'string');
-  });
-
-  it('should return a YYYY-MM-DD formatted string', () => {
-    assert.strictEqual(formatDate(new Date('2018-10-10')), '2018-10-10');
-  });
-
-  it('should pad single digits with 0s', () => {
-    assert.strictEqual(formatDate(new Date('2018-1-1')), '2018-01-01');
-  });
-});
+t.type(formatDate(new Date()), 'string', 'returns a string');
+t.equal(formatDate(new Date(2018, 9, 10)), '2018-10-10', 'format YYYY-MM-DD');
+t.equal(formatDate(new Date(2018, 0, 1)), '2018-01-01', 'pad single digits with 0s');
