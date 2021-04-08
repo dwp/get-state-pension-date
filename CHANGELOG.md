@@ -1,7 +1,35 @@
 # Change Log
 
+<a name="2.0.0"></a>
+## [2.0.0](https://github.com/gunjam/get-state-pension-date/compare/v1.0.2...v2.0.0) (2021-04-08)
+
+### BREAKING CHANGES
+
+`getStatePensionDate()` no longer returns UTC dates, dates are constructed using `new Date(int, int, int)` and will be in the local environments timezone.
+
+### Features
+
+* do not return UTC dates
+* isOverStatePensionAge() no longer requires gender
+
+### Chore
+
+* bump dependencies
+* update engines to > node 8
+* remove old node versions from travis config
+* clean up .gitignore
+
+### Docs
+
+* use SVG for build status instead of PNG
+
+### Test
+
+* convert tests from mocha to tap
+
+
 <a name="1.0.2"></a>
-## [1.0.1](https://github.com/gunjam/get-state-pension-date/compare/1.0.1...1.0.2) (2019-06-06)
+## [1.0.2](https://github.com/gunjam/get-state-pension-date/compare/v1.0.1...v1.0.2) (2019-06-06)
 
 ### Refactor
 
@@ -18,7 +46,7 @@
 
 
 <a name="1.0.1"></a>
-## [1.0.1](https://github.com/gunjam/get-state-pension-date/compare/1.0.0...1.0.1) (2019-04-15)
+## [1.0.1](https://github.com/gunjam/get-state-pension-date/compare/v1.0.0...v1.0.1) (2019-04-15)
 
 ### Fixed
 
@@ -31,7 +59,7 @@
 
 
 <a name="1.0.0"></a>
-## [1.0.0](https://github.com/gunjam/get-state-pension-date/compare/9a3b94a...1.0.0) (2019-04-11)
+## [1.0.0](https://github.com/gunjam/get-state-pension-date/compare/9a3b94a...v1.0.0) (2019-04-11)
 
 ### Features
 
