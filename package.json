@@ -1,5 +1,5 @@
 {
-  "name": "get-state-pension-date",
+  "name": "@dwp/get-state-pension-date",
   "version": "2.0.0",
   "description": "For a given date of birth, and gender, return the date on which the UK State Pension will be available.",
   "main": "src/get-state-pension-date.js",
@@ -11,18 +11,18 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/gunjam/get-state-pension-date"
+    "url": "https://github.com/dwp/get-state-pension-date"
   },
   "scripts": {
     "test": "tap test",
     "lint": "xo"
   },
-  "author": "DWP Digital",
+  "author": "DWP Digital <open-source@engineering.digital.dwp.gov.uk>",
   "license": "ISC",
   "devDependencies": {
-    "tap": "^15.0.2",
-    "timekeeper": "^2.2.0",
-    "xo": "^0.38.2"
+    "tap": "15.0.2",
+    "timekeeper": "2.2.0",
+    "xo": "0.38.2"
   },
   "xo": {
     "space": true,
