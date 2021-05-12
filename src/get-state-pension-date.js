@@ -54,10 +54,10 @@ const getStatePensionDate = (dateOfBirth, gender) => {
   // If fixed state pension date, return fixed value
   if (ageData.pensionDate.type === FIXED) {
     const spaDateElements = ageData.pensionDate.value.split('-');
-    const spaYear = Number.parseInt(spaDateElements[0], 10);
-    const spaMonth = Number.parseInt(spaDateElements[1], 10) - 1;
-    const spaDay = Number.parseInt(spaDateElements[2], 10);
-    return new Date(spaYear, spaMonth, spaDay);
+    const spaYearFixed = Number.parseInt(spaDateElements[0], 10);
+    const spaMonthFixed = Number.parseInt(spaDateElements[1], 10) - 1;
+    const spaDayFixed = Number.parseInt(spaDateElements[2], 10);
+    return new Date(spaYearFixed, spaMonthFixed, spaDayFixed);
   }
 
   // Otherwise pensionDate.type must be 'age'

@@ -23,6 +23,7 @@
     "@dwp/eslint-config-base": "5.0.1",
     "eslint": "7.26.0",
     "eslint-plugin-sonarjs": "0.7.0",
+    "nyc": "15.1.0",
     "tap": "15.0.9",
     "timekeeper": "2.2.0"
   }
