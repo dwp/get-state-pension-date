@@ -20,9 +20,9 @@
   "author": "DWP Digital <open-source@engineering.digital.dwp.gov.uk>",
   "license": "ISC",
   "devDependencies": {
-    "tap": "15.0.2",
+    "tap": "15.0.9",
     "timekeeper": "2.2.0",
-    "xo": "0.38.2"
+    "xo": "0.40.1"
   },
   "xo": {
     "space": true,
