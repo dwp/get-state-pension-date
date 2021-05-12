@@ -1,17 +1,18 @@
-'use strict';
-
 const isValidDateString = require('./utils/is-valid-date-string');
 const formatDate = require('./utils/format-date');
 const statePensionAgeData = require('./spa-data');
-const {FIXED, MALE, FEMALE, EQUALISED, EQUALISATION_DATE} = require('./consts');
+const {
+  FIXED, MALE, FEMALE, EQUALISED, EQUALISATION_DATE,
+} = require('./consts');
 
 /**
  * Function to calculate UK State Pension date for a given 'gender' and
  * 'Date of birth'.
  *
- * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD)
- * @param {string} gender gender as string ('male' or 'female')
- * @returns {Date} state pension date as a Date object
+ * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD).
+ * @param {string} gender Gender as string ('male' or 'female').
+ * @returns {Date} State pension date as a Date object.
+ * @throws {Error} When given invalid arguments.
  */
 const getStatePensionDate = (dateOfBirth, gender) => {
   if (typeof dateOfBirth !== 'string') {
@@ -32,18 +33,18 @@ const getStatePensionDate = (dateOfBirth, gender) => {
 
   // Sanitise date of birth string (zero pad months and days)
   const dateElements = dateOfBirth.split('-');
-  const sanitisedDob = dateElements[0] + '-' +
-    dateElements[1].padStart(2, '0') + '-' +
-    dateElements[2].padStart(2, '0');
+  const sanitisedDob = `${dateElements[0]}-${
+    dateElements[1].padStart(2, '0')}-${
+    dateElements[2].padStart(2, '0')}`;
 
   // If date of birth is on or afer the equalised date use equalisation SPA data
   // otherwise use the gender specific data
   const spaDataSet = sanitisedDob >= EQUALISATION_DATE ? EQUALISED : gender;
 
   // Get state pension age data that matches the date of birth
-  const ageData = statePensionAgeData[spaDataSet].find(spaData => {
-    if ((!spaData.periodStart || sanitisedDob >= spaData.periodStart) &&
-        (!spaData.periodEnd || sanitisedDob <= spaData.periodEnd)) {
+  const ageData = statePensionAgeData[spaDataSet].find((spaData) => {
+    if ((!spaData.periodStart || sanitisedDob >= spaData.periodStart)
+        && (!spaData.periodEnd || sanitisedDob <= spaData.periodEnd)) {
       return true;
     }
 
@@ -84,24 +85,23 @@ const getStatePensionDate = (dateOfBirth, gender) => {
  * Function to calculate UK State Pension date for a given 'gender' and
  * 'Date of birth' as a YYYY-MM-DD formatted string.
  *
- * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD)
- * @param {string} gender gender as string ('male' or 'female')
- * @returns {Date} state pension date as a Date object
+ * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD).
+ * @param {string} gender Gender as string ('male' or 'female').
+ * @returns {Date} State pension date as a Date object.
  */
 const getStatePensionDateAsString = (dateOfBirth, gender) => {
   const spaDate = getStatePensionDate(dateOfBirth, gender);
-  const string = formatDate(spaDate);
-  return string;
+  return formatDate(spaDate);
 };
 
 /**
  * Function to determine whether a person is currently over State Pension age
  * based on their date of birth.
  *
- * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD)
- * @returns {boolean} true if over SPA, false if not
+ * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD).
+ * @returns {boolean} True if over SPA, false if not.
  */
-const isOverStatePensionAge = dateOfBirth => {
+const isOverStatePensionAge = (dateOfBirth) => {
   // Since December 2018 the State Pension age has been equalised for men and
   // women so we no longer need a gender flag to passed by the user, hardcoding
   // for this call.
@@ -114,5 +114,5 @@ const isOverStatePensionAge = dateOfBirth => {
 module.exports = {
   getStatePensionDate,
   getStatePensionDateAsString,
-  isOverStatePensionAge
+  isOverStatePensionAge,
 };

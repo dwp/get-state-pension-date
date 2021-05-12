@@ -1,5 +1,3 @@
-'use strict';
-
 // Regular expression to match date format YYYY-MM-DD
 const dateRegex = /^\d{4}(?:-\d{1,2}){2}$/;
 
@@ -7,12 +5,12 @@ const dateRegex = /^\d{4}(?:-\d{1,2}){2}$/;
 const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 /**
- * Function that returns whether the input date string is a valid date
+ * Function that returns whether the input date string is a valid date.
  *
  * @param {string} input Input date string
  * @returns {boolean} Whether date string is valid
  */
-const isValidDate = input => {
+const isValidDate = (input) => {
   // Check date string matches format
   if (!dateRegex.test(input)) {
     return false;

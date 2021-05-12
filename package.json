@@ -15,19 +15,15 @@
   },
   "scripts": {
     "test": "tap test",
-    "lint": "xo"
+    "lint": "eslint ."
   },
   "author": "DWP Digital <open-source@engineering.digital.dwp.gov.uk>",
   "license": "ISC",
   "devDependencies": {
+    "@dwp/eslint-config-base": "5.0.1",
+    "eslint": "7.26.0",
+    "eslint-plugin-sonarjs": "0.7.0",
     "tap": "15.0.9",
-    "timekeeper": "2.2.0",
-    "xo": "0.40.1"
-  },
-  "xo": {
-    "space": true,
-    "env": [
-      "node"
-    ]
+    "timekeeper": "2.2.0"
   }
 }

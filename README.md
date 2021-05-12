@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/gunjam/get-state-pension-date.svg?branch=master)](https://travis-ci.org/gunjam/get-state-pension-date)
 [![Code Coverage](https://img.shields.io/codecov/c/github/gunjam/get-state-pension-date.svg)](https://codecov.io/github/gunjam/get-state-pension-date?branch=master)
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+[![ESLint code style](https://img.shields.io/badge/code_style-eslint-5ed9c7.svg)](https://github.com/dwp/eslint-config-bases)
 [![Install size](https://packagephobia.now.sh/badge?p=get-state-pension-date)](https://packagephobia.now.sh/result?p=get-state-pension-date)
 
 This package provides functions that allows the calculation of the date on which a UK citizen becomes eligible for their State Pension.
