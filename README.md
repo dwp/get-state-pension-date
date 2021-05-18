@@ -1,16 +1,11 @@
 # get-state-pension-date #
 
-[![Build Status](https://travis-ci.org/gunjam/get-state-pension-date.svg?branch=master)](https://travis-ci.org/gunjam/get-state-pension-date)
-[![Code Coverage](https://img.shields.io/codecov/c/github/gunjam/get-state-pension-date.svg)](https://codecov.io/github/gunjam/get-state-pension-date?branch=master)
-[![ESLint code style](https://img.shields.io/badge/code_style-eslint-5ed9c7.svg)](https://github.com/dwp/eslint-config-bases)
-[![Install size](https://packagephobia.now.sh/badge?p=get-state-pension-date)](https://packagephobia.now.sh/result?p=get-state-pension-date)
-
 This package provides functions that allows the calculation of the date on which a UK citizen becomes eligible for their State Pension.
 
 ## Installation
 
 ```bash
-npm install get-state-pension-date
+npm install @dwp/get-state-pension-date
 ```
 
 ## Usage
@@ -21,7 +16,7 @@ Takes a date of birth string and a gender and returns a `Date` object representi
 **For example:**
 
 ```javascript
-const {getStatePensionDate} = require('get-state-pension-date');
+const {getStatePensionDate} = require('@dwp/get-state-pension-date');
 
 // Date: 2058-03-25T00:00:00.000Z
 const spaDate = getStatePensionDate('1990-03-25', 'male');
@@ -33,7 +28,7 @@ Takes the same parameters as `getStatePensionDate()` but returns the State Pensi
 **For example:**
 
 ```javascript
-const {getStatePensionDateAsString} = require('get-state-pension-date');
+const {getStatePensionDateAsString} = require('@dwp/get-state-pension-date');
 
 // string: 2058-03-25
 const spaString = getStatePensionDateAsString('1990-03-25', 'female');
@@ -45,7 +40,7 @@ Takes a date of birth and returns a `boolean`, returning `true` if the State Pen
 **For example:**
 
 ```javascript
-const {isOverStatePensionAge} = require('get-state-pension-date');
+const {isOverStatePensionAge} = require('@dwp/get-state-pension-date');
 
 // boolean: true
 const overSpa = isOverStatePensionAge('1953-03-25');
