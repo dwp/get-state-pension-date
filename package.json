@@ -1,6 +1,6 @@
 {
   "name": "@dwp/get-state-pension-date",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "For a given date of birth, and gender, return the date on which the UK State Pension will be available.",
   "main": "src/get-state-pension-date.js",
   "engines": {
