@@ -42,14 +42,10 @@ const getStatePensionDate = (dateOfBirth, gender) => {
   const spaDataSet = sanitisedDob >= EQUALISATION_DATE ? EQUALISED : gender;
 
   // Get state pension age data that matches the date of birth
-  const ageData = statePensionAgeData[spaDataSet].find((spaData) => {
-    if ((!spaData.periodStart || sanitisedDob >= spaData.periodStart)
-        && (!spaData.periodEnd || sanitisedDob <= spaData.periodEnd)) {
-      return true;
-    }
-
-    return false;
-  });
+  const ageData = statePensionAgeData[spaDataSet].find((spaData) => (
+    (!spaData.periodStart || sanitisedDob >= spaData.periodStart)
+    && (!spaData.periodEnd || sanitisedDob <= spaData.periodEnd)
+  ));
 
   // If fixed state pension date, return fixed value
   if (ageData.pensionDate.type === FIXED) {
