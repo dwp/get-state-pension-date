@@ -14,7 +14,7 @@ const {
  * @returns {Date} State pension date as a Date object.
  * @throws {Error} When given invalid arguments.
  */
-const getStatePensionDate = (dateOfBirth, gender) => {
+function getStatePensionDate(dateOfBirth, gender) {
   if (typeof dateOfBirth !== 'string') {
     throw new TypeError(`Expected dateOfBirth to be string got ${typeof dateOfBirth}: ${dateOfBirth}`);
   }
@@ -85,7 +85,7 @@ const getStatePensionDate = (dateOfBirth, gender) => {
  * @param {string} gender Gender as string ('male' or 'female').
  * @returns {Date} State pension date as a Date object.
  */
-const getStatePensionDateAsString = (dateOfBirth, gender) => {
+function getStatePensionDateAsString(dateOfBirth, gender) {
   const spaDate = getStatePensionDate(dateOfBirth, gender);
   return formatDate(spaDate);
 };
@@ -97,7 +97,7 @@ const getStatePensionDateAsString = (dateOfBirth, gender) => {
  * @param {string} dateOfBirth Input date of birth string (YYYY-MM-DD).
  * @returns {boolean} True if over SPA, false if not.
  */
-const isOverStatePensionAge = (dateOfBirth) => {
+function isOverStatePensionAge(dateOfBirth) {
   // Since December 2018 the State Pension age has been equalised for men and
   // women so we no longer need a gender flag to passed by the user, hardcoding
   // for this call.
