@@ -1,15 +1,20 @@
 module.exports = {
   root: true,
-  extends: ['@dwp/eslint-config-base', 'plugin:sonarjs/recommended'],
+  extends: [
+    '@dwp/eslint-config-base',
+    'plugin:sonarjs/recommended',
+  ],
+  env: {
+    node: true,
+  },
   plugins: [
     'sonarjs',
   ],
   rules: {
+    indent: [2, 2],
     'sonarjs/cognitive-complexity': [1, 10],
-    'jsdoc/require-description-complete-sentence': ['warn'],
   },
   parserOptions: {
-    ecmaVersion: '2018',
+    ecmaVersion: 12,
   },
-  ignorePatterns: ['test/**/*'],
 };

@@ -10,7 +10,7 @@ const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
  * @param {string} input Input date string
  * @returns {boolean} Whether date string is valid
  */
-const isValidDate = (input) => {
+function isValidDate(input) {
   // Check date string matches format
   if (!dateRegex.test(input)) {
     return false;
